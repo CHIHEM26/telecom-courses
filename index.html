@@ -46,6 +46,56 @@
       font-family: 'Press Start 2P', monospace;
     }
 
+    /* CRT Screen container */
+    #crt-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.2) 100%);
+      mix-blend-mode: multiply;
+      transform: scale(1.02, 0.98) perspective(900px);
+    }
+
+    /* Scanlines */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9998;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+    }
+
+    /* Flicker effect */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      background: rgba(255, 255, 255, 0.015);
+      animation: flicker 0.15s infinite;
+    }
+
+    @keyframes flicker {
+      0%   { opacity: 0.01; }
+      50%  { opacity: 0.025; }
+      100% { opacity: 0.01; }
+    }
+
     h1, h3, .lead {
       color: #525252;
       font-family: 'Press Start 2P', monospace;
@@ -80,12 +130,10 @@
     .course-card .card-title {
       font-size: 18px;
       margin-bottom: 10px;
-      color: #f6d4b1;
     }
 
     .course-card .card-text {
       font-size: 10px;
-      color: #f6d4b1;
     }
 
     #splash-screen {
@@ -99,7 +147,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 9999;
+      z-index: 10000;
       transition: opacity 1s ease;
     }
 
@@ -119,7 +167,7 @@
       width: 600px;
       height: 32px;
       background-color: #525252;
-      border: 1px dashed #f6d4b1;
+      border: 2px dashed #f6d4b1;
       overflow: hidden;
     }
 
@@ -156,7 +204,7 @@
       z-index: 1100;
       background-color: #525252;
       color: #f6d4b1;
-      border: 2px solid #f6d4b1;
+      border: 0px solid #f6d4b1;
       padding: 6px 20px;
       cursor: pointer;
       border-radius: 0px;
@@ -206,6 +254,8 @@
   </style>
 </head>
 <body>
+  <div id="crt-screen"></div>
+
   <button id="sidebarToggle" aria-label="Toggle menu">
     <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect y="0" width="36" height="6"/>
