@@ -6,19 +6,48 @@
   <title>Telecom Courses</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 
 <body class="bg-light d-flex flex-column min-vh-100">
   <main class="container my-auto py-4">
-    <div class="text-center">
-      <h1 class="mb-3 text-primary fs-3">Telecom Course Portal</h1>
-      <p class="lead fs-5 mb-4">Select your specialty:</p>
+    <div class="text-center mb-4">
+      <h1 class="text-primary fs-3">Telecom Course Portal</h1>
+      <p class="lead fs-5">Select your specialty:</p>
+    </div>
 
-      <div class="d-grid gap-3 col-12 col-md-6 mx-auto">
-        <a class="btn btn-outline-primary btn-lg" href="specialties/rt/index.html">📡 RT - Réseaux Télécom</a>
-        <a class="btn btn-outline-success btn-lg" href="specialties/st/index.html">🔧 ST - Systèmes de Télécommunication</a>
+    <div class="row justify-content-center text-center">
+      <div class="col-12 col-md-5 mb-3 fade-up" id="rt-box">
+        <a class="btn btn-outline-primary btn-lg w-100 py-3" href="specialties/rt/index.html">
+          📡 RT - Réseaux Télécom
+        </a>
+      </div>
+      <div class="col-12 col-md-5 mb-3 fade-up" id="st-box">
+        <a class="btn btn-outline-success btn-lg w-100 py-3" href="specialties/st/index.html">
+          🔧 ST - Systèmes de Télécommunication
+        </a>
       </div>
     </div>
   </main>
+
+  <script>
+    // Simple on-load animation
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-up').forEach(el => {
+        setTimeout(() => el.classList.add('visible'), 200);
+      });
+    });
+  </script>
 </body>
 </html>
