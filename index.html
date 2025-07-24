@@ -105,6 +105,17 @@
       padding: 70px 20px 20px 20px;
     }
 
+    #closeSidebar {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      color: #525252;
+      cursor: pointer;
+    }
+
     #sidebarToggle {
       position: fixed;
       top: 20px;
@@ -127,12 +138,26 @@
     }
 
     #sidebar a {
-      display: block;
-      margin: 20px 0;
-      color: #525252;
-      text-decoration: none;
-      font-size: 10px;
-    }
+    display: block;
+    margin: 15px 0;
+    padding: 12px;
+    background-color: #f6d4b1;
+    color: #525252;
+    border: 2px solid #525252;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 10px;
+    text-decoration: none;
+    font-family: 'Press Start 2P', monospace;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  #sidebar a:hover {
+    background-color: #ffe8c9;
+    transform: translateY(-2px);
+  }
+
+    
 
     #sidebar h4 {
       font-size: 12px;
@@ -189,6 +214,7 @@
 
   <div id="sidebar">
     <h4>📱 MENU</h4>
+    <button id="closeSidebar" aria-label="Close menu">✖</button>
     <a href="#" class="sidebar-link">🏠 Home</a>
     <a href="#about" class="sidebar-link">📖 About</a>
     <a href="specialties/rt/index.html" class="sidebar-link">🔌 RT</a>
@@ -247,6 +273,7 @@
     const sidebar = document.getElementById("sidebar");
     const sidebarLinks = document.querySelectorAll(".sidebar-link");
     const body = document.body;
+    const closeBtn = document.getElementById("closeSidebar");
 
     let percent = 0;
     const interval = setInterval(() => {
@@ -266,6 +293,11 @@
       const isOpen = sidebar.style.left === "0px";
       sidebar.style.left = isOpen ? "-100vw" : "0px";
       body.classList.toggle("menu-open", !isOpen);
+    });
+
+    closeBtn.addEventListener("click", () => {
+      sidebar.style.left = "-100vw";
+      body.classList.remove("menu-open");
     });
 
     sidebarLinks.forEach(link => {
