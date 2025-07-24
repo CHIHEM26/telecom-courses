@@ -13,14 +13,78 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #525252;
+      background-color: #f6d4b1;
       color: #525252;
     }
 
     body.menu-open {
-      background-color: #f6d4b1;
+      background-color: #525252;
+      color: #f6d4b1;
+    }
+
+    body > .container {
+      flex: 1 0 auto;
+    }
+
+    footer {
+      flex-shrink: 0;
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #525252;
+      color: #f6d4b1;
+      text-align: center;
+      font-size: 12px;
+      font-family: 'Press Start 2P', monospace;
+    }
+
+    h1, h3, .lead {
+      color: #525252;
+      font-family: 'Press Start 2P', monospace;
+    }
+
+    .announcement-box {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      background-color: #525252;
+      color: #f6d4b1;
+      padding: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .course-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: #525252;
+      color: #f6d4b1;
+      border-radius: 0px;
+      font-family: 'Press Start 2P', monospace;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      height: 100%;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.5);
+    }
+
+    .course-card .card-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #f6d4b1;
+    }
+
+    .course-card .card-text {
+      font-size: 10px;
       color: #f6d4b1;
     }
 
@@ -30,7 +94,7 @@
       width: 100vw;
       height: 100vh;
       background-color: #525252;
-      color: #525252;
+      color: #f6d4b1;
       font-family: 'Press Start 2P', monospace;
       display: flex;
       justify-content: center;
@@ -48,7 +112,6 @@
     .splash-wrapper h1 {
       font-size: 14px;
       margin-bottom: 10px;
-      text-align: left;
       color: #f6d4b1;
     }
 
@@ -57,7 +120,6 @@
       height: 32px;
       background-color: #525252;
       border: 1px dashed #f6d4b1;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
       overflow: hidden;
     }
 
@@ -73,36 +135,40 @@
       pointer-events: none;
     }
 
-    h1, h3, .lead {
-      color: #f6d4b1;
-      font-family: 'Press Start 2P', monospace;
-    }
-
-    h1 {
-      font-size: 18px;
-    }
-
-    .lead {
-      font-size: 12px;
-    }
-
-    .hidden {
-      display: none;
-    }
-
     #sidebar {
       position: fixed;
       top: 0;
       left: -100vw;
       height: 100vh;
       width: 100vw;
-      background-color: #e0b894;
-      color: #525252;
+      background-color: #525252;
+      color: #f6d4b1;
       transition: left 0.3s ease;
       z-index: 9999;
       font-family: 'Press Start 2P', monospace;
-      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
       padding: 70px 20px 20px 20px;
+    }
+
+    #sidebarToggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1100;
+      background-color: #525252;
+      color: #f6d4b1;
+      border: 2px solid #f6d4b1;
+      padding: 6px 20px;
+      cursor: pointer;
+      border-radius: 0px;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #sidebarToggle svg rect {
+      height: 6px;
+      fill: #f6d4b1;
     }
 
     #closeSidebar {
@@ -112,114 +178,50 @@
       background: transparent;
       border: none;
       font-size: 24px;
-      color: #525252;
+      color: #f6d4b1;
       cursor: pointer;
-    }
-
-    #sidebarToggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 1100;
-      background-color: #f6d4b1;
-      border: 2px solid #525252;
-      padding: 6px 20px;
-      cursor: pointer;
-      border-radius: 4px;
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: auto;
-    }
-
-    #sidebarToggle svg rect {
-      height: 6px;
     }
 
     #sidebar a {
-    display: block;
-    margin: 15px 0;
-    padding: 12px;
-    background-color: #f6d4b1;
-    color: #525252;
-    border: 2px solid #525252;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 10px;
-    text-decoration: none;
-    font-family: 'Press Start 2P', monospace;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-  }
-
-  #sidebar a:hover {
-    background-color: #ffe8c9;
-    transform: translateY(-2px);
-  }
-
-    
-
-    #sidebar h4 {
-      font-size: 12px;
-      margin-bottom: 30px;
-    }
-
-    .course-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background-color: #f6d4b1;
-      color: #525252;
-      border: 4px solid #525252;
-      border-radius: 8px;
-      font-family: 'Press Start 2P', monospace;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      padding: 15px;
-      height: 100%;
-    }
-
-    .course-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.5);
-    }
-
-    .course-card .card-title {
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: #525252;
-    }
-
-    .course-card .card-text {
-      font-size: 10px;
-      color: #525252;
-    }
-
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      background-color: #f6d4b1;
-      color: #525252;
+      display: block;
+      margin: 15px 0;
+      padding: 12px;
+      background-color: transparent;
+      color: #f6d4b1;
       text-align: center;
-      font-size: 12px;
+      font-size: 10px;
+      text-decoration: none;
       font-family: 'Press Start 2P', monospace;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    #sidebar a:hover {
+      background-color: #444;
+      transform: translateY(-2px);
+    }
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
   <button id="sidebarToggle" aria-label="Toggle menu">
     <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect y="0" width="36" height="6" fill="#525252"/>
-      <rect y="9" width="36" height="6" fill="#525252"/>
-      <rect y="18" width="36" height="6" fill="#525252"/>
+      <rect y="0" width="36" height="6"/>
+      <rect y="9" width="36" height="6"/>
+      <rect y="18" width="36" height="6"/>
     </svg>
   </button>
 
   <div id="sidebar">
     <h4>📱 MENU</h4>
     <button id="closeSidebar" aria-label="Close menu">✖</button>
-    <a href="#" class="sidebar-link">🏠 Home</a>
-    <a href="#about" class="sidebar-link">📖 About</a>
-    <a href="specialties/rt/index.html" class="sidebar-link">🔌 RT</a>
-    <a href="specialties/st/index.html" class="sidebar-link">📶 ST</a>
-    <a href="#contact" class="sidebar-link">✉️ Contact</a>
+    <a href="#">🏠 Home</a>
+    <a href="#about">📖 About</a>
+    <a href="specialties/rt/index.html">🔌 RT</a>
+    <a href="specialties/st/index.html">📶 ST</a>
+    <a href="#contact">✉️ Contact</a>
   </div>
 
   <div id="splash-screen">
@@ -233,6 +235,11 @@
 
   <div class="container text-center py-5">
     <h1 class="mb-3">Telecom Courses Portal</h1>
+
+    <div class="announcement-box">
+      🚨 Welcome to the Telecom Courses Portal! Explore modules and find your path 🚨
+    </div>
+
     <p class="lead mb-4">Choose your specialty:</p>
 
     <div class="row justify-content-center">
@@ -265,13 +272,11 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
   <script>
     const splash = document.getElementById("splash-screen");
     const progress = document.getElementById("progress-bar");
     const toggleButton = document.getElementById("sidebarToggle");
     const sidebar = document.getElementById("sidebar");
-    const sidebarLinks = document.querySelectorAll(".sidebar-link");
     const body = document.body;
     const closeBtn = document.getElementById("closeSidebar");
 
@@ -298,13 +303,6 @@
     closeBtn.addEventListener("click", () => {
       sidebar.style.left = "-100vw";
       body.classList.remove("menu-open");
-    });
-
-    sidebarLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        sidebar.style.left = "-100vw";
-        body.classList.remove("menu-open");
-      });
     });
 
     document.addEventListener('click', (e) => {
