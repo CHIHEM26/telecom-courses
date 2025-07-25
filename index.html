@@ -327,14 +327,18 @@
   Footer mmmh feet
   </footer>
 
-  <script>
-    const splash = document.getElementById("splash-screen");
-    const progress = document.getElementById("progress-bar");
-    const toggleButton = document.getElementById("sidebarToggle");
-    const sidebar = document.getElementById("sidebar");
-    const body = document.body;
-    const closeBtn = document.getElementById("closeSidebar");
+<script>
+  const splash = document.getElementById("splash-screen");
+  const progress = document.getElementById("progress-bar");
+  const toggleButton = document.getElementById("sidebarToggle");
+  const sidebar = document.getElementById("sidebar");
+  const body = document.body;
+  const closeBtn = document.getElementById("closeSidebar");
 
+  // Only show splash screen on first visit
+  const hasVisited = localStorage.getItem("visited");
+
+  if (!hasVisited) {
     let percent = 0;
     const interval = setInterval(() => {
       percent += 2;
@@ -342,28 +346,37 @@
       if (percent >= 100) {
         clearInterval(interval);
         splash.classList.add("fade-out");
+        setTimeout(() => {
+          splash.remove();
+          localStorage.setItem("visited", "true"); // mark as visited
+        }, 1000); // match the CSS fade-out duration
       }
     }, 25);
+  } else {
+    splash.remove(); // skip splash screen if already visited
+  }
 
-    toggleButton.addEventListener("click", () => {
-      const isOpen = sidebar.style.left === "0px";
-      sidebar.style.left = isOpen ? "-100vw" : "0px";
-      body.classList.toggle("menu-open", !isOpen);
-    });
+  // Sidebar toggle logic
+  toggleButton.addEventListener("click", () => {
+    const isOpen = sidebar.style.left === "0px";
+    sidebar.style.left = isOpen ? "-100vw" : "0px";
+    body.classList.toggle("menu-open", !isOpen);
+  });
 
-    closeBtn.addEventListener("click", () => {
+  closeBtn.addEventListener("click", () => {
+    sidebar.style.left = "-100vw";
+    body.classList.remove("menu-open");
+  });
+
+  document.addEventListener('click', (e) => {
+    if (sidebar.style.left === "0px" &&
+        !sidebar.contains(e.target) &&
+        !toggleButton.contains(e.target)) {
       sidebar.style.left = "-100vw";
       body.classList.remove("menu-open");
-    });
+    }
+  });
+</script>
 
-    document.addEventListener('click', (e) => {
-      if (sidebar.style.left === "0px" &&
-          !sidebar.contains(e.target) &&
-          !toggleButton.contains(e.target)) {
-        sidebar.style.left = "-100vw";
-        body.classList.remove("menu-open");
-      }
-    });
-  </script>
 </body>
 </html>
