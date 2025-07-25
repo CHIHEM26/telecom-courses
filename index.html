@@ -292,7 +292,7 @@
   </div>
 
   <div class="container text-center py-5">
-    <h1 class="mb-3">Telecom Courses Portal</h1>
+<h1 id="typewriter" class="mb-3"></h1>
     <div class="announcement-box">
       idk what to put in here for now
     </div>
@@ -368,6 +368,7 @@
     body.classList.remove("menu-open");
   });
 
+
   document.addEventListener('click', (e) => {
     if (sidebar.style.left === "0px" &&
         !sidebar.contains(e.target) &&
@@ -376,6 +377,33 @@
       body.classList.remove("menu-open");
     }
   });
+
+  const text = "Telecom Courses Portal";
+let i = 0;
+function typeEffect() {
+  if (i < text.length) {
+    document.getElementById("typewriter").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 80);
+  }
+}
+typeEffect();
+
+
+const secretCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let input = [];
+
+window.addEventListener("keydown", (e) => {
+  input.push(e.key);
+  input = input.slice(-secretCode.length);
+  if (input.join('') === secretCode.join('')) {
+    alert("👾 SECRET UNLOCKED!");
+    // You could also reveal a hidden div
+  }
+});
+
+
+
 </script>
 
 </body>
