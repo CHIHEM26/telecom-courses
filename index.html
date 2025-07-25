@@ -9,6 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <style>
     html::before {
@@ -271,11 +272,11 @@
   <div id="sidebar">
     <h4>MENU</h4>
     <button id="closeSidebar" aria-label="Close menu">✖</button>
-    <a href="#">Home</a>
-    <a href="#about">About</a>
-    <a href="#" data-specialty="rt">RT</a>
-    <a href="#" data-specialty="st">ST</a>
-    <a href="#contact">Contacts</a>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+    <a href="#" data-specialty="rt"><i class="fas fa-network-wired"></i> RT</a>
+    <a href="#" data-specialty="st"><i class="fas fa-satellite-dish"></i> ST</a>
+    <a href="pages/contact/index.html"><i class="fas fa-envelope"></i> Contacts</a>
   </div>
 
   <div id="splash-screen">
@@ -290,8 +291,10 @@
   <div class="container text-center py-5">
     <h1 class="mb-3">Telecom Courses Portal</h1>
     <div class="announcement-box">
-      idk what to put in here for now
+      Hey el chabiba ! I made this website to make it easier to find Telecom courses. It’s an amateur project, so there are flaws — but I hope it helps.<br>
+      If you want to contribute or suggest an idea, just <a href="pages/contact/index.html" style="color: #f6d4b1; text-decoration: underline;">contact me here</a>.
     </div>
+
     <p class="lead mb-4">Choose your specialty:</p>
 
     <div class="row justify-content-center">
@@ -320,10 +323,10 @@
   </div>
 
   <footer>
-    Footer mmmh feet
+    Fiha khir... <br>
+    &copy; 2025 chihem
   </footer>
 
-  <!-- Modal -->
   <div class="modal fade" id="semesterModal" tabindex="-1" aria-labelledby="semesterModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content text-center" style="background-color: #525252; color: #f6d4b1; font-family: 'Press Start 2P', monospace;">
@@ -344,7 +347,6 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
@@ -385,36 +387,32 @@
       }
     });
 
-    // S1/S2 Modal logic for all RT/ST links
     let selectedSpecialty = '';
     const semesterModal = new bootstrap.Modal(document.getElementById('semesterModal'));
 
-document.querySelectorAll('a[data-specialty]').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    selectedSpecialty = this.getAttribute('data-specialty');
-    
-    // ✅ Fix: Close sidebar if open
-    sidebar.style.left = "-100vw";
-    body.classList.remove("menu-open");
+    document.querySelectorAll('a[data-specialty]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        selectedSpecialty = this.getAttribute('data-specialty');
 
-    semesterModal.show();
-  });
-});
+        sidebar.style.left = "-100vw";
+        body.classList.remove("menu-open");
 
+        semesterModal.show();
+      });
+    });
 
     document.getElementById('btnS1').addEventListener('click', () => {
-  if (selectedSpecialty) {
-    window.location.href = `specialties/${selectedSpecialty.toLowerCase()}/s1.html`;
-  }
-});
+      if (selectedSpecialty) {
+        window.location.href = `specialties/${selectedSpecialty.toLowerCase()}/s1.html`;
+      }
+    });
 
-document.getElementById('btnS2').addEventListener('click', () => {
-  if (selectedSpecialty) {
-    window.location.href = `specialties/${selectedSpecialty.toLowerCase()}/s2.html`;
-  }
-});
-
+    document.getElementById('btnS2').addEventListener('click', () => {
+      if (selectedSpecialty) {
+        window.location.href = `specialties/${selectedSpecialty.toLowerCase()}/s2.html`;
+      }
+    });
   </script>
 </body>
 </html>
