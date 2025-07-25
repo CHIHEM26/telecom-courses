@@ -292,7 +292,7 @@
   </div>
 
   <div class="container text-center py-5">
-<h1 id="typewriter" class="mb-3"></h1>
+    <h1 class="mb-3">Telecom Courses Portal</h1>
     <div class="announcement-box">
       idk what to put in here for now
     </div>
@@ -327,18 +327,14 @@
   Footer mmmh feet
   </footer>
 
-<script>
-  const splash = document.getElementById("splash-screen");
-  const progress = document.getElementById("progress-bar");
-  const toggleButton = document.getElementById("sidebarToggle");
-  const sidebar = document.getElementById("sidebar");
-  const body = document.body;
-  const closeBtn = document.getElementById("closeSidebar");
+  <script>
+    const splash = document.getElementById("splash-screen");
+    const progress = document.getElementById("progress-bar");
+    const toggleButton = document.getElementById("sidebarToggle");
+    const sidebar = document.getElementById("sidebar");
+    const body = document.body;
+    const closeBtn = document.getElementById("closeSidebar");
 
-  // Only show splash screen on first visit
-  const hasVisited = localStorage.getItem("visited");
-
-  if (!hasVisited) {
     let percent = 0;
     const interval = setInterval(() => {
       percent += 2;
@@ -346,65 +342,28 @@
       if (percent >= 100) {
         clearInterval(interval);
         splash.classList.add("fade-out");
-        setTimeout(() => {
-          splash.remove();
-          localStorage.setItem("visited", "true"); // mark as visited
-        }, 1000); // match the CSS fade-out duration
       }
     }, 25);
-  } else {
-    splash.remove(); // skip splash screen if already visited
-  }
 
-  // Sidebar toggle logic
-  toggleButton.addEventListener("click", () => {
-    const isOpen = sidebar.style.left === "0px";
-    sidebar.style.left = isOpen ? "-100vw" : "0px";
-    body.classList.toggle("menu-open", !isOpen);
-  });
+    toggleButton.addEventListener("click", () => {
+      const isOpen = sidebar.style.left === "0px";
+      sidebar.style.left = isOpen ? "-100vw" : "0px";
+      body.classList.toggle("menu-open", !isOpen);
+    });
 
-  closeBtn.addEventListener("click", () => {
-    sidebar.style.left = "-100vw";
-    body.classList.remove("menu-open");
-  });
-
-
-  document.addEventListener('click', (e) => {
-    if (sidebar.style.left === "0px" &&
-        !sidebar.contains(e.target) &&
-        !toggleButton.contains(e.target)) {
+    closeBtn.addEventListener("click", () => {
       sidebar.style.left = "-100vw";
       body.classList.remove("menu-open");
-    }
-  });
+    });
 
-  const text = "Telecom Courses Portal";
-let i = 0;
-function typeEffect() {
-  if (i < text.length) {
-    document.getElementById("typewriter").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeEffect, 80);
-  }
-}
-typeEffect();
-
-
-const secretCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-let input = [];
-
-window.addEventListener("keydown", (e) => {
-  input.push(e.key);
-  input = input.slice(-secretCode.length);
-  if (input.join('') === secretCode.join('')) {
-    alert("👾 SECRET UNLOCKED!");
-    // You could also reveal a hidden div
-  }
-});
-
-
-
-</script>
-
+    document.addEventListener('click', (e) => {
+      if (sidebar.style.left === "0px" &&
+          !sidebar.contains(e.target) &&
+          !toggleButton.contains(e.target)) {
+        sidebar.style.left = "-100vw";
+        body.classList.remove("menu-open");
+      }
+    });
+  </script>
 </body>
 </html>
