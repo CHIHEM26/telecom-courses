@@ -357,15 +357,20 @@
     const body = document.body;
     const closeBtn = document.getElementById("closeSidebar");
 
-    let percent = 0;
-    const interval = setInterval(() => {
-      percent += 2;
-      progress.style.width = percent + "%";
-      if (percent >= 100) {
-        clearInterval(interval);
-        splash.classList.add("fade-out");
-      }
-    }, 25);
+    if (!sessionStorage.getItem('splashShown')) {
+      let percent = 0;
+      const interval = setInterval(() => {
+        percent += 2;
+        progress.style.width = percent + "%";
+        if (percent >= 100) {
+          clearInterval(interval);
+          splash.classList.add("fade-out");
+          sessionStorage.setItem('splashShown', 'true');
+        }
+      }, 25);
+    } else {
+      splash.style.display = "none";
+    }
 
     toggleButton.addEventListener("click", () => {
       const isOpen = sidebar.style.left === "0px";
