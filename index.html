@@ -11,8 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-  
   <style>
+    html, body {
+      height: 100%;
+    }
+
     html::before {
       content: "";
       position: fixed;
@@ -32,9 +35,12 @@
       background-color: #f6d4b1;
       color: #525252;
       margin: 0;
-      height: 100%;
       display: flex;
       flex-direction: column;
+    }
+
+    main {
+      flex: 1;
     }
 
     body.menu-open {
@@ -270,7 +276,6 @@
     </svg>
   </button>
 
-  
   <div id="sidebar">
     <h4>MENU</h4>
     <button id="closeSidebar" aria-label="Close menu">✖</button>
@@ -280,7 +285,6 @@
     <a href="#" data-specialty="st"><i class="fas fa-satellite-dish"></i> ST</a>
     <a href="pages/contact/index.html"><i class="fas fa-envelope"></i> Contact me !</a>
   </div>
-  
 
   <div id="splash-screen">
     <div class="splash-wrapper">
@@ -291,7 +295,7 @@
     </div>
   </div>
 
-  <div class="container text-center py-5">
+  <main class="container text-center py-5">
     <h1 class="mb-3">Telecom Courses Portal</h1>
     <div class="announcement-box">
       Hey el chabiba ! I made this website to make it easier to find Telecom courses. It’s my first website so it's not perfect — but I hope it helps.<br>
@@ -323,11 +327,11 @@
         </a>
       </div>
     </div>
-  </div>
+  </main>
 
-<footer class="text-center py-3 bg-dark text-light">
-  <small>&copy; 2025 Chihem. All rights reserved.</small>
-</footer>
+  <footer class="text-center py-3 bg-dark text-light">
+    <small>&copy; 2025 Chihem. All rights reserved.</small>
+  </footer>
 
   <div class="modal fade" id="semesterModal" tabindex="-1" aria-labelledby="semesterModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -420,8 +424,6 @@
         window.location.href = `specialties/${selectedSpecialty.toLowerCase()}/s2.html`;
       }
     });
-
-    
   </script>
 </body>
 </html>
