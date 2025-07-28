@@ -187,14 +187,18 @@
       100% { transform: translate(0); }
     }
 
-    .email-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      font-size: 14px;
-      margin-top: 10px;
-    }
+   .email-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  word-break: break-word;
+}
+
 
     .copy-btn {
       border: none;
@@ -225,6 +229,24 @@
     .copy-notification.show {
       opacity: 1;
     }
+
+    @media (max-width: 480px) {
+  .email-section {
+    flex-direction: column;
+    font-size: 12px;
+  }
+
+  .copy-btn {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+
+  .email-section i {
+    font-size: 1.4rem;
+  }
+}
+
+
   </style>
 </head>
 <body>
