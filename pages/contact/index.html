@@ -160,6 +160,7 @@
       justify-content: center;
       gap: 3rem;
       flex-wrap: wrap;
+      margin-bottom: 30px;
     }
 
     .social-icons a {
@@ -185,6 +186,45 @@
       80% { transform: translate(2px, 2px); }
       100% { transform: translate(0); }
     }
+
+    .email-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .copy-btn {
+      border: none;
+      background-color: #525252;
+      color: #f6d4b1;
+      padding: 4px 10px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .copy-notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #525252;
+      color: #f6d4b1;
+      padding: 6px 12px;
+      font-size: 10px;
+      font-family: 'Press Start 2P', monospace;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 9999;
+    }
+
+    .copy-notification.show {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -208,21 +248,20 @@
     <a href="/telecom-courses/pages/contact/index.html"><i class="fas fa-envelope"></i>Contact me !</a>
   </div>
 
-<div class="main-content">
-  <h1>CONTACT ME</h1>
-  <div class="social-icons">
-<div class="contact-row">
-  <a href="mailto:hichemboukerche26@gmail.com" aria-label="Send Email">
-    <i class="fas fa-envelope"></i>
-  </a>
-</div>
-
-</a>
-    <a href="https://m.me/hichem.boukerche.2025" target="_blank"><i class="fab fa-facebook-messenger"></i></a>
-    <a href="https://www.facebook.com/hichem.boukerche.2025" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+  <div class="main-content">
+    <h1>CONTACT ME</h1>
+    <div class="social-icons">
+      <a href="https://m.me/hichem.boukerche.2025" target="_blank"><i class="fab fa-facebook-messenger"></i></a>
+      <a href="https://www.facebook.com/hichem.boukerche.2025" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div class="email-section">
+<i class="fas fa-envelope" style="font-size: 1.8rem;"></i>
+      <span id="emailText">hichemboukerche26@gmail.com</span>
+      <button class="copy-btn" onclick="copyEmail()">COPY</button>
+    </div>
+    <div class="copy-notification" id="copyNotification">Copied!</div>
   </div>
-</div>
 
   <div class="modal fade" id="semesterModal" tabindex="-1" aria-labelledby="semesterModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -243,8 +282,6 @@
       </div>
     </div>
   </div>
-
-  
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -286,17 +323,27 @@
         semesterModal.show();
       });
     });
-  document.getElementById('btnS1').addEventListener('click', () => {
-    if (selectedSpecialty) {
-      window.location.href = `../../specialties/${selectedSpecialty.toLowerCase()}/s1.html`;
-    }
-  });
 
-  document.getElementById('btnS2').addEventListener('click', () => {
-    if (selectedSpecialty) {
-      window.location.href = `../../specialties/${selectedSpecialty.toLowerCase()}/s2.html`;
+    document.getElementById('btnS1').addEventListener('click', () => {
+      if (selectedSpecialty) {
+        window.location.href = `../../specialties/${selectedSpecialty.toLowerCase()}/s1.html`;
+      }
+    });
+
+    document.getElementById('btnS2').addEventListener('click', () => {
+      if (selectedSpecialty) {
+        window.location.href = `../../specialties/${selectedSpecialty.toLowerCase()}/s2.html`;
+      }
+    });
+
+    function copyEmail() {
+      const email = document.getElementById("emailText").textContent;
+      navigator.clipboard.writeText(email).then(() => {
+        const notification = document.getElementById("copyNotification");
+        notification.classList.add("show");
+        setTimeout(() => notification.classList.remove("show"), 1000);
+      });
     }
-  });
   </script>
 </body>
 </html>
