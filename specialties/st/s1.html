@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,78 +5,80 @@
   <title>🖥️ S Systèmes Télécom</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Bootstrap (optional) -->
+  <!-- Bootstrap (for accordion) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Retro Pixel Font -->
+  <!-- Retro Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
 
   <style>
     body.menu-open {
-  background-color: #525252;
-  color: #f6d4b1;
-}
+      background-color: #525252;
+      color: #f6d4b1;
+    }
 
-#sidebar {
-  position: fixed;
-  top: 0;
-  left: -100vw;
-  height: 100vh;
-  width: 100vw;
-  background-color: #525252;
-  color: #f6d4b1;
-  transition: left 0.3s ease;
-  z-index: 9999;
-  font-family: 'Press Start 2P', monospace;
-  padding: 70px 20px 20px 20px;
-}
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: -100vw;
+      height: 100vh;
+      width: 100vw;
+      background-color: #525252;
+      color: #f6d4b1;
+      transition: left 0.3s ease;
+      z-index: 9999;
+      font-family: 'Press Start 2P', monospace;
+      padding: 70px 20px 20px 20px;
+    }
 
-#sidebarToggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1100;
-  background-color: #525252;
-  color: #f6d4b1;
-  border: none;
-  padding: 6px 20px;
-  cursor: pointer;
-  border-radius: 0;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
-}
+    #sidebarToggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1100;
+      background-color: #525252;
+      color: #f6d4b1;
+      border: none;
+      padding: 6px 20px;
+      cursor: pointer;
+      border-radius: 0;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
+    }
 
-#sidebarToggle svg rect {
-  height: 6px;
-  fill: #f6d4b1;
-}
+    #sidebarToggle svg rect {
+      height: 6px;
+      fill: #f6d4b1;
+    }
 
-#closeSidebar {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  font-size: 24px;
-  color: #f6d4b1;
-  cursor: pointer;
-}
+    #closeSidebar {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      color: #f6d4b1;
+      cursor: pointer;
+    }
 
-#sidebar a {
-  display: block;
-  margin: 15px 0;
-  padding: 12px;
-  color: #f6d4b1;
-  text-align: center;
-  font-size: 20px;
-  text-decoration: none;
-}
+    #sidebar a {
+      display: block;
+      margin: 15px 0;
+      padding: 12px;
+      color: #f6d4b1;
+      text-align: center;
+      font-size: 20px;
+      text-decoration: none;
+    }
 
-#sidebar a:hover {
-  background-color: #444;
-  transform: translateY(-2px);
-}
-
+    #sidebar a:hover {
+      background-color: #444;
+      transform: translateY(-2px);
+    }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -101,49 +102,63 @@
       margin-bottom: 20px;
     }
 
-    .module-list {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-bottom: 40px;
-    }
-
-    .module-item {
+    .accordion-button {
+      font-family: 'Press Start 2P', monospace;
       background-color: #f6d4b1;
       color: #525252;
       border: 3px solid #525252;
-      padding: 18px;
-      text-align: center;
-      font-family: 'Press Start 2P', monospace;
-      text-decoration: none;
       font-size: 12px;
-      border-radius: 8px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      padding: 18px;
     }
 
-    .module-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    .accordion-button:not(.collapsed) {
+      background-color: #e5c9a4;
     }
 
-    .back-button {
-      background-color: #f6d4b1;
-      color: #525252;
-      border: 2px solid #525252;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 6px;
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
-      display: inline-block;
+.accordion-body a {
+  display: block;
+  padding: 6px 0;
+  color: #f6d4b1;
+  font-size: 12px;
+  text-decoration: none;
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 1px;
+}
+
+
+    .accordion-item {
+      border: none;
+      margin-bottom: 20px;
+      background-color: #383838;
+      border-radius: 10px;
     }
 
-    .back-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.5);
+    .accordion-body {
+      background-color: #383838;
     }
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f6d4b1;
+  color: #1a1a1a;
+  border: 2px solid #1a1a1a;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 10px 14px;
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 #1a1a1a;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+  box-shadow: 2px 2px 0 #1a1a1a;
+}
+
 
     .container {
       max-width: 700px;
@@ -152,7 +167,8 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar Toggle Button -->
+
+<!-- Sidebar Toggle -->
 <button id="sidebarToggle" aria-label="Toggle menu">
   <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect y="0" width="36" height="6"/>
@@ -161,34 +177,152 @@
   </svg>
 </button>
 
-<!-- Sidebar Content -->
-<div id="sidebar">
-  <h4>MENU</h4>
-  <button id="closeSidebar" aria-label="Close menu">✖</button>
-  <a href="/">Home</a>
-  <a href="/#about">About</a>
-  <a href="/specialties/rt/index.html">RT</a>
-  <a href="/specialties/st/index.html">ST</a>
-  <a href="/#contact">Contacts</a>
-</div>
-
-  <div class="container text-center">
-    <h1>ST - Systèmes Télécom</h1>
-    <p class="lead">Wch tsh9 l3ziz</p>
-
-    <div class="module-list">
-      <a href="#" class="module-item">Systèmes Numériques</a>
-      <a href="#" class="module-item">Traitement du Signal</a>
-      <a href="#" class="module-item">Systèmes Embarqués</a>
-      <a href="#" class="module-item">Microcontrôleurs</a>
-      <a href="#" class="module-item">Électronique Numérique</a>
-      <a href="#" class="module-item">Conception de Circuits</a>
-    </div>
-
-    <a href="../../index.html" class="back-button"> back to home</a>
+ <!-- Sidebar -->
+  <div id="sidebar">
+    <h4>MENU</h4>
+    <button id="closeSidebar" aria-label="Close menu">✖</button>
+    <a href="../../index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+    <a href="#" data-specialty="rt"><i class="fas fa-network-wired"></i> RT</a>
+    <a href="#" data-specialty="st"><i class="fas fa-satellite-dish"></i> ST</a>
+    <a href="/pages/contact/index.html"><i class="fas fa-envelope"></i> Contacts</a>
   </div>
 
-  <script>
+<div class="container text-center">
+  <h1>ST - Systèmes Télécom S1</h1>
+  <p class="lead">Wch tsh9 l3ziz</p>
+
+  <div class="accordion" id="modulesAccordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading1">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+          Communication numérique avancée
+        </button>
+      </h2>
+      <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+        <div class="accordion-body">
+          <a href="#">Cours 1</a>
+          <a href="#">Cours 2</a>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading2">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+          Routage IP
+        </button>
+      </h2>
+      <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+        <div class="accordion-body">
+          <a href="#">Cours 1</a>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading3">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+          Traitement de signal avancé
+        </button>
+      </h2>
+      <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+        <div class="accordion-body">
+          <a href="#">Cours 1</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading4">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+          Systéme linux
+        </button>
+      </h2>
+      <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+        <div class="accordion-body">
+          <a href="#">Cours 1</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading5">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+          Normes et protocoles
+        </button>
+      </h2>
+      <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+        <div class="accordion-body">
+          <a href="#">Cours 1</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading6">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6">
+          Python orienté objets
+        </button>
+      </h2>
+      <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+        <div class="accordion-body">
+          <a href="#">Cours 1</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading7">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7">
+          Anglais technique et terminologie
+        </button>
+      </h2>
+      <div id="collapse7" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+        <div class="accordion-body">
+          <a href="#">Cours 1</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading8">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8">
+          Travaux pratiques
+        </button>
+      </h2>
+      <div id="collapse8" class="accordion-collapse collapse" data-bs-parent="#modulesAccordion">
+        <div class="accordion-body">
+          <a href="#">TP 1</a>
+          <a href="#">TP 2</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <br>
+  <a href="../../index.html" class="back-button"><i class="fas fa-home"></i></a>
+<div class="modal fade" id="semesterModal" tabindex="-1" aria-labelledby="semesterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center" style="background-color: #525252; color: #f6d4b1; font-family: 'Press Start 2P', monospace;">
+        <div class="modal-header border-0">
+          <h5 class="modal-title w-100">Choose Semester</h5>
+        </div>
+        <div class="modal-body">
+          <p>Which semester do you want?</p>
+          <div class="d-flex justify-content-around mt-3">
+            <button class="btn btn-outline-light" id="btnS1">S1</button>
+            <button class="btn btn-outline-light" id="btnS2">S2</button>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-link text-light" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
   const toggleButton = document.getElementById("sidebarToggle");
   const sidebar = document.getElementById("sidebar");
   const closeBtn = document.getElementById("closeSidebar");
@@ -215,6 +349,36 @@
   });
 </script>
 
+<!-- Bootstrap JS (for accordion) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let selectedSpecialty = '';
+  const semesterModal = new bootstrap.Modal(document.getElementById('semesterModal'));
+
+  document.querySelectorAll('a[data-specialty]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      selectedSpecialty = this.getAttribute('data-specialty');
+
+      sidebar.style.left = "-100vw";
+      body.classList.remove("menu-open");
+
+      semesterModal.show();
+    });
+  });
+
+  document.getElementById('btnS1').addEventListener('click', () => {
+    if (selectedSpecialty) {
+      window.location.href = `../../specialties/${selectedSpecialty.toLowerCase()}/s1.html`;
+    }
+  });
+
+  document.getElementById('btnS2').addEventListener('click', () => {
+    if (selectedSpecialty) {
+      window.location.href = `../../specialties/${selectedSpecialty.toLowerCase()}/s2.html`;
+    }
+  });
+</script>
 
 </body>
 </html>
